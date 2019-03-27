@@ -16,6 +16,9 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade cmake g++ gcc git 
 	rm -rf /root/.cache /tmp/* && \
 	addgroup -g $PGID $PGROUP && \
 	adduser -D -G $PGROUP -u $PUID $PUSER && \
+	mkdir -p /config /data/music /log /scripts && \
+	chown $PUSER:$PGROUP /config /data/music /log /scripts && \
+	chmod 755 /config /data/music /log /scripts && \
 	chmod 600 /etc/crontabs/$PUSER && \
 	chmod 755 /scripts/beets_import.sh
 
