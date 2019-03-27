@@ -1,1 +1,1 @@
-* * * * * echo `date` `id`
+* * * * * /scripts/beets_import.sh
