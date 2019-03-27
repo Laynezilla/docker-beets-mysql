@@ -11,8 +11,8 @@ VOLUME ["/config", "/music", "/working", "/scripts", "/log"]
 COPY root/etc/crontab/beets /etc/crontabs/$PUSER
 #COPY beet_import.sh /scripts/beet_import.sh
 
-RUN addgroup -g $PGID $PGROUP
-	adduser -D -G $PGROUP -u $PUID $PUSER
+RUN addgroup -g $PGID $PGROUP && \
+	adduser -D -G $PGROUP -u $PUID $PUSER && \
 	chmod 0600 /etc/crontabs/$PUSER
 	#chmod +x /scripts/beet_import.sh
 
