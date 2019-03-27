@@ -9,7 +9,7 @@ ENV BEETSDIR /config
 VOLUME ["/config", "/data/music", "/log", "/scripts"]
 
 COPY root/etc/crontabs/beets /etc/crontabs/$PUSER
-COPY root/scripts/beet_import.sh /scripts/beet_import.sh
+COPY root/scripts/beets_import.sh /scripts/beets_import.sh
 
 RUN addgroup -g $PGID $PGROUP && \
 	adduser -D -G $PGROUP -u $PUID $PUSER && \
