@@ -13,7 +13,7 @@ COPY root/scripts/beet_import.sh /scripts/beet_import.sh
 
 RUN addgroup -g $PGID $PGROUP && \
 	adduser -D -G $PGROUP -u $PUID $PUSER && \
-	chmod 0600 /etc/crontabs/$PUSER
+	chmod 0600 /etc/crontabs/$PUSER && \
 	chmod +x /scripts/beet_import.sh
 
 RUN apk add --no-cache --virtual=build-dependencies --upgrade cmake g++ gcc git jpeg-dev libpng-dev openjpeg-dev make python3-dev && \
