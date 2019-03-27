@@ -13,8 +13,8 @@ COPY root/scripts/beets_import.sh /scripts/beets_import.sh
 
 RUN addgroup -g $PGID $PGROUP && \
 	adduser -D -G $PGROUP -u $PUID $PUSER && \
-	chmod 0600 /etc/crontabs/$PUSER && \
-	chmod +x /scripts/beets_import.sh
+	chmod 600 /etc/crontabs/$PUSER && \
+	chmod 755 /scripts/beets_import.sh
 
 RUN apk add --no-cache --virtual=build-dependencies --upgrade cmake g++ gcc git jpeg-dev libpng-dev openjpeg-dev make python3-dev && \
 	apk add --no-cache --upgrade curl imagemagick nano python3 tar wget mysql-client && \
