@@ -4,8 +4,9 @@ ENV PUID 1001
 ENV PGID 1001
 ENV PUSER beets
 ENV PGROUP beets
+ENV BEETSDIR /config
 
-VOLUME ["/config", "/music", "/working", "/scripts", "/log"]
+VOLUME ["/config", "/data/music", "/log", "/scripts"]
 
 COPY root/etc/crontabs/beets /etc/crontabs/$PUSER
 COPY root/scripts/beet_import.sh /scripts/beet_import.sh
