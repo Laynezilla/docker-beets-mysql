@@ -1,5 +1,4 @@
 FROM alpine:latest
-MAINTAINER Layne Fowler
 
 ENV PUID 1001
 ENV PGID 1001
@@ -8,7 +7,7 @@ ENV PGROUP beets
 
 VOLUME ["/config", "/music", "/working", "/scripts", "/log"]
 
-COPY root/etc/crontab/beets /etc/crontabs/$PUSER
+COPY root/etc/crontabs/beets /etc/crontabs/$PUSER
 #COPY beet_import.sh /scripts/beet_import.sh
 
 RUN addgroup -g $PGID $PGROUP && \
@@ -22,10 +21,10 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade cmake g++ gcc git 
 	apk del --purge build-dependencies && \
 	rm -rf /root/.cache /tmp/*
 
-USER $PUSER
-
 #ENTRYPOINT ["/usr/bin/beet"]
 
 CMD ["crond", "-f", "-d", "8"]
+
+USER $PUSER
 
 WORKDIR /home/$PUSER/
