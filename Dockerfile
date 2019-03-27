@@ -25,6 +25,6 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade cmake g++ gcc git 
 
 CMD ["crond", "-f", "-d", "8"]
 
-USER $PUSER
+#USER $PUSER
 
 WORKDIR /home/$PUSER/
