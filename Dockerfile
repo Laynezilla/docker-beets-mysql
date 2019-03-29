@@ -6,7 +6,7 @@ ENV PUSER beets
 ENV PGROUP beets
 ENV BEETSDIR /config
 
-COPY root/scripts/beets_import.sh /scripts/beets_import.sh
+COPY root/scripts/ /scripts/
 COPY root/etc/crontabs/beets /etc/crontabs/$PUSER
 
 RUN apk add --no-cache --virtual=build-dependencies --upgrade cmake g++ gcc git jpeg-dev libpng-dev openjpeg-dev make python3-dev && \
@@ -17,10 +17,9 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade cmake g++ gcc git 
 	addgroup -g $PGID $PGROUP && \
 	adduser -D -G $PGROUP -u $PUID $PUSER && \
 	mkdir -p /config /data/music /log /scripts && \
-	chown $PUSER:$PGROUP /config /data/music /log /scripts && \
-	chmod 755 /config /data/music /log /scripts && \
-	chmod 600 /etc/crontabs/$PUSER && \
-	chmod 755 /scripts/beets_import.sh
+	chown $PUSER:$PGROUP -R /config /data/music /log /scripts && \
+	chmod 755 -R /config /data/music /log /scripts && \
+	chmod 600 /etc/crontabs/$PUSER
 
 CMD ["crond", "-f", "-d", "8"]
 
