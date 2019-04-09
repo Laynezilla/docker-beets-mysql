@@ -6,10 +6,10 @@ ENV PUSER beets
 ENV PGROUP data
 ENV BEETSDIR /config
 
-COPY root/scripts/ /scripts/
-COPY root/etc/crontabs/beets /etc/crontabs/$PUSER
-COPY root/usr/local/bin/docker-entrypoint.sh /usr/local/bin/
-#COPY root /
+#COPY root/scripts/ /scripts/
+#COPY root/etc/crontabs/beets /etc/crontabs/$PUSER
+#COPY root/usr/local/bin/docker-entrypoint.sh /usr/local/bin/
+COPY root /
 
 RUN apk add --no-cache --virtual=build-dependencies --upgrade cmake g++ gcc git jpeg-dev libpng-dev openjpeg-dev make python3-dev su-exec && \
 	apk add --no-cache --upgrade curl imagemagick nano python3 tar wget mysql-client && \
