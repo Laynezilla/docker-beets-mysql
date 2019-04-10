@@ -16,6 +16,5 @@ if [ "$1" = 'crond' ]; then
 	chmod 600 /etc/crontabs/$PUSER
 	exec "$@"
 else
-	# does this command need to use exec?
-	su-exec $PUSER:$PGROUP "$@"
+	exec su-exec $PUSER:$PGROUP "$@"
 fi
