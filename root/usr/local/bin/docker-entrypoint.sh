@@ -1,11 +1,11 @@
 #!/bin/sh
 # /usr/local/bin/docker-entrypoint.sh
 
-if [ ! "id -u $PUSER" = $PUID ]; then
+if [ ! `id -u $PUSER` == $PUID ]; then
 	usermod -u $PUID $PUSER
 fi
 
-if [ ! "id -g $PUSER" = $PGID ]; then
+if [ ! `id -g $PUSER` == $PGID ]; then
 	groupmod -g $PGID $PGROUP
 fi
 
