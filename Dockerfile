@@ -15,9 +15,11 @@ RUN apk add --no-cache --virtual=build-dependencies --upgrade cmake g++ gcc git 
 	rm -rf /root/.cache /tmp/* && \
 	addgroup -g $PGID $PGROUP && \
 	adduser -D -G $PGROUP -u $PUID $PUSER && \
-	chmod +x /usr/local/bin/docker-entrypoint.sh && \
-	mkdir -p /config /data/music /log /scripts && \
-	chmod -R 755 /config /data/music /log /scripts
+	mkdir -m 775 -p /config \
+	/data/music \
+	/log \
+	/scripts && \
+	chmod 755 /usr/local/bin/docker-entrypoint.sh /etc/crontabs/beets /scripts/beets_import.sh
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
